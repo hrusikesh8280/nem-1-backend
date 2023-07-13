@@ -7,7 +7,7 @@ const userModel = require('../models/User.Model')
 
 
 userRouter.post("/signup", async (req, res) => {
-    const { name, email, password, confirmedPassword } = req.body;
+    const { email, password, confirmedPassword } = req.body;
   
     if (password !== confirmedPassword) {
       return res.status(400).send("Passwords do not match");
@@ -21,7 +21,7 @@ userRouter.post("/signup", async (req, res) => {
     try {
       bcrypt.hash(password, 5, async (err, hash) => {
         const newUser = new userModel({
-          name,
+          
           email,
           password: hash,
           confirmedPassword: confirmedPassword, 
